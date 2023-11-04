@@ -1,5 +1,5 @@
-import { STRAVA_CLIENT_ID } from "$lib/public_env";
-import { STRAVA_CLIENT_SECRET } from "$lib/server/secrets";
+import { PUBLIC_STRAVA_CLIENT_ID } from "$env/static/public";
+import { STRAVA_CLIENT_SECRET } from "$env/static/private";
 import { redirect } from "@sveltejs/kit";
 
 /** @type {import('./$types').RequestHandler} */
@@ -9,7 +9,7 @@ export async function GET({ url }) {
   const scope = url.searchParams.get("scope");
 
   const data = {
-    client_id: STRAVA_CLIENT_ID.toString(),
+    client_id: PUBLIC_STRAVA_CLIENT_ID.toString(),
     client_secret: STRAVA_CLIENT_SECRET,
     code,
     grant_type: "authorization_code",

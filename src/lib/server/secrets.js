@@ -1,0 +1,1 @@
+export const STRAVA_CLIENT_SECRET = "8ec909d1deb972a10cea959129bc1abe078c1f43";

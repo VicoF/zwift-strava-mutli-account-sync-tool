@@ -1,9 +1,11 @@
 import { PUBLIC_STRAVA_CLIENT_ID } from "$env/static/public";
 import { STRAVA_CLIENT_SECRET } from "$env/static/private";
 import { redirect } from "@sveltejs/kit";
+import { supabase } from "$lib/server/db";
+import { createJWT } from "$lib/server/jwt";
 
 /** @type {import('./$types').RequestHandler} */
-export async function GET({ url }) {
+export async function GET({ url, cookies }) {
   const access_denied = url.searchParams.get("error") != null;
   const code = url.searchParams.get("code");
   const scope = url.searchParams.get("scope");
@@ -23,6 +25,15 @@ export async function GET({ url }) {
     headers,
     body: JSON.stringify(data),
   });
-  console.log(await response.json());
-  throw redirect(302, "/");
+  const responseData = await response.json();
+  await supabase.from("strava_tokens").upsert({
+    athlete_id: responseData.athlete.id,
+    access_token: responseData.access_token,
+    refresh_token: responseData.refresh_token,
+    expires_at: new Date(responseData.expires_at).toUTCString(),
+  });
+  await createJWT({ athlete_id: responseData.athlete.id }).then((jwt) => {
+    cookies.set("token", jwt, { maxAge: 3600, path: "/" });
+  });
+  throw redirect(302, "/dashboard");
 }

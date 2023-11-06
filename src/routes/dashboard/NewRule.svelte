@@ -27,9 +27,12 @@
       class="input"
       placeholder="New rule"
       bind:value={share_to_athlete_id}
-    /></td
-  >
-  {#if rule_string != "" && share_to_athlete_id != ""}
-    <td> <button class="btn-orange" on:click={save}>Save</button></td>
-  {/if}
+    />
+  </td>
+  <td>
+    {#if rule_string != "" && share_to_athlete_id != ""}
+      <button class="btn-orange" on:click={save}>Save</button>
+    {/if}
+  </td>
+  <td />
 </tr>

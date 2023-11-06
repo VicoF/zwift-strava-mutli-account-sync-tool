@@ -30,7 +30,7 @@ export async function GET({ url, cookies }) {
     athlete_id: responseData.athlete.id,
     access_token: responseData.access_token,
     refresh_token: responseData.refresh_token,
-    expires_at: new Date(responseData.expires_at).toUTCString(),
+    expires_at: new Date(responseData.expires_at * 1000).toUTCString(),
   });
   await createJWT({ athlete_id: responseData.athlete.id }).then((jwt) => {
     cookies.set("token", jwt, { maxAge: 3600, path: "/" });

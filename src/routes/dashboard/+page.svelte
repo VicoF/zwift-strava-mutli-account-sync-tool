@@ -1,6 +1,6 @@
 <script>
-  import NewRule from "../../components/NewRule.svelte";
-  import Rule from "../../components/Rule.svelte";
+  import NewRule from "./NewRule.svelte";
+  import Rule from "./Rule.svelte";
 
   /** @type {import('./$types').PageData} */
   export let data;
@@ -42,6 +42,6 @@
     {#each data.sync_rules as rules}
       <Rule on:delete={deleteRule} on:save={saveRule} {...rules} />
     {/each}
+    <NewRule on:save={createRule} />
   </tbody>
 </table>
-<NewRule on:save={createRule} />

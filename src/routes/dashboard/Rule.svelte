@@ -20,8 +20,10 @@
 <tr>
   <td> <input type="text" class="input" bind:value={rule_string} /></td>
   <td> <input type="text" class="input" bind:value={share_to_athlete_id} /></td>
-  {#if og_rule_string != rule_string || og_share_to_athlete_id != share_to_athlete_id}
-    <td> <button class="btn-orange" on:click={save}>Save</button></td>
-  {/if}
+  <td>
+    {#if og_rule_string != rule_string || og_share_to_athlete_id != share_to_athlete_id}
+      <button class="btn-orange" on:click={save}>Save</button>
+    {/if}
+  </td>
   <td> <button class="btn-gray" on:click={delete_rule}>Delete</button></td>
 </tr>

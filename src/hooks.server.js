@@ -2,7 +2,7 @@ import { validateJWT } from "$lib/server/jwt";
 import { redirect } from "@sveltejs/kit";
 import { setContext } from "svelte";
 
-const notProtectedRoutes = ["/", "/api/exchange_token"];
+const notProtectedRoutes = ["/", "/api/exchange_token", "/api/webhooks/strava"];
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {

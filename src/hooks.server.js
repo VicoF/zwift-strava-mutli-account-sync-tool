@@ -2,7 +2,7 @@ import { validateJWT } from "$lib/server/jwt";
 import { redirect } from "@sveltejs/kit";
 import { setContext } from "svelte";
 
-const notProtectedRoutes = ["/"];
+const notProtectedRoutes = ["/", "/api/exchange_token"];
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {

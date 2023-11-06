@@ -6,7 +6,6 @@ const notProtectedRoutes = ["/"];
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
-  console.log("lo");
   if (notProtectedRoutes.includes(event.url.pathname)) {
     return await resolve(event);
   }
@@ -14,7 +13,6 @@ export async function handle({ event, resolve }) {
   if (token == undefined) throw redirect(303, "/");
   const { payload, protectedHeader } = await validateJWT(token);
   if (payload.athlete_id == undefined) throw redirect(303, "/");
-  console.log("test" + payload.athlete_id);
   event.locals.athlete_id = payload.athlete_id;
 
   return await resolve(event);

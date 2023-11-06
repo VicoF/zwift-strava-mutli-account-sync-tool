@@ -19,7 +19,6 @@
   }
   function saveRule(event) {
     const { rule_id, rule_string, share_to_athlete_id } = event.detail;
-    console.log(rule_id, rule_string, share_to_athlete_id);
   }
   async function deleteRule(event) {
     const { rule_id } = event.detail;

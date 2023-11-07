@@ -3,6 +3,7 @@
 
   export let rule_string = "";
   export let share_to_athlete_id = "";
+  export let athlete_choices = [];
   const dispatch = createEventDispatcher();
 
   function save() {
@@ -22,12 +23,11 @@
     /></td
   >
   <td>
-    <input
-      type="text"
-      class="input"
-      placeholder="New rule"
-      bind:value={share_to_athlete_id}
-    />
+    <select class="input" bind:value={share_to_athlete_id}>
+      {#each athlete_choices as athlete}
+        <option value={athlete.athlete_id}>{athlete.athlete_name}</option>
+      {/each}
+    </select>
   </td>
   <td>
     {#if rule_string != "" && share_to_athlete_id != ""}

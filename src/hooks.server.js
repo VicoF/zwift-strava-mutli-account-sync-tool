@@ -2,11 +2,15 @@ import { validateJWT } from "$lib/server/jwt";
 import { redirect } from "@sveltejs/kit";
 import { setContext } from "svelte";
 
-const notProtectedRoutes = ["/", "/api/exchange_token", "/api/webhooks/strava"];
+const notProtectedRoutes = [
+  "^/$",
+  "^/api/exchange_token/*$",
+  "^/api/webhooks/strava$",
+];
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
-  if (notProtectedRoutes.includes(event.url.pathname)) {
+  if (notProtectedRoutes.some((route) => event.url.pathname.match(route))) {
     return await resolve(event);
   }
   const token = event.cookies.get("token");

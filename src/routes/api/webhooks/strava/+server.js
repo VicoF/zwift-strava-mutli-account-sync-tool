@@ -20,6 +20,7 @@ export async function POST({ request }) {
   if (object_type != "activity" && aspect_type != "create") {
     return new Response();
   }
+  console.log("object_id", object_id);
 
   const athlete_tokens = (
     await supabase.from("strava_tokens").select().eq("athlete_id", owner_id)

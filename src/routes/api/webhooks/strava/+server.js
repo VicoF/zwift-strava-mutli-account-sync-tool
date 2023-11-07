@@ -21,10 +21,12 @@ export async function POST({ request }) {
     return new Response();
   }
   console.log("object_id", object_id);
+  console.log("owner_id", owner_id);
 
   const athlete_tokens = (
     await supabase.from("strava_tokens").select().eq("athlete_id", owner_id)
   ).data;
+  console.log(athlete_tokens);
   let myHeaders = new Headers();
   myHeaders.append("Accept", "application/json");
   myHeaders.append("Authorization", `Bearer ${athlete_tokens.access_token}`);

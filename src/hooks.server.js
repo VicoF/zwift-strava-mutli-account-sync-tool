@@ -4,7 +4,7 @@ import { setContext } from "svelte";
 
 const notProtectedRoutes = [
   "^/$",
-  "^/api/exchange_token/*$",
+  "^/api/exchange_token/.*$",
   "^/api/webhooks/strava$",
 ];
 

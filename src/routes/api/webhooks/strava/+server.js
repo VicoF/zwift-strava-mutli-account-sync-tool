@@ -46,6 +46,6 @@ export async function POST({ request }) {
       .eq("athlete_id", owner_id)
       .containedBy("rule_string", `%${activity.name}%`)
   ).data;
-  console.log(rules);
+  console.log("test", rules);
   return new Response();
 }

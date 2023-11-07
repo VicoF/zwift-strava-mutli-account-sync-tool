@@ -24,7 +24,11 @@ export async function POST({ request }) {
   console.log("owner_id", owner_id);
 
   const athlete_tokens = (
-    await supabase.from("strava_tokens").select().eq("athlete_id", owner_id)
+    await supabase
+      .from("strava_tokens")
+      .select()
+      .eq("athlete_id", owner_id)
+      .single()
   ).data;
   console.log(athlete_tokens);
   let myHeaders = new Headers();

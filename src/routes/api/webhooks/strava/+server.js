@@ -47,5 +47,6 @@ export async function POST({ request }) {
       .containedBy("rule_string", `%${activity.name}%`)
   ).data;
   console.log("test", rules);
+  console.log("activity", activity);
   return new Response();
 }
